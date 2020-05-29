@@ -14,4 +14,8 @@ export default class AMC extends Model {
   get isOnBuilding() {
     return this.grounding.toLowerCase() === GROUNDING_BUILDING;
   }
+
+  get isOnGround() {
+    return !this.isOnBuilding;
+  }
 }

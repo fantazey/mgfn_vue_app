@@ -6,13 +6,9 @@
                         :longitude="manager.site.longitude"
                         :cover="manager.baseStation.cover"/>
     </div>
-    <div class="row">
-      <div class="cell">
-        <schema-section/>
-      </div>
-      <div class="cell">
-        <configuration-section/>
-      </div>
+    <div class="card-row">
+      <schema-section :amc="manager.amc" :antennas="manager.antennas"/>
+      <configuration-section/>
     </div>
   </div>
 </template>

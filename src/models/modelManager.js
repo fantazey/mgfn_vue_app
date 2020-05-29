@@ -29,7 +29,7 @@ export default class ModelManager {
       throw new Error('Unsupported type');
     }
     const obj = new this.typeToModelMap[type](item);
-    if (!Object.hasOwnProperty.call(this.models, type)) {
+    if (!Object.hasOwnProperty.call(this.modelsByType, type)) {
       this.modelsByType[type] = [];
     }
     this.modelsByType[type].push(obj);
@@ -51,5 +51,13 @@ export default class ModelManager {
 
   get baseStation() {
     return this.findAllByType('BaseStation')[0];
+  }
+
+  get amc() {
+    return this.findAllByType('AMC')[0];
+  }
+
+  get antennas() {
+    return this.findAllByType('Antenna_RAN')
   }
 }
