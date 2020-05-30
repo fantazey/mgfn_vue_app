@@ -18,4 +18,8 @@ export default class AMC extends Model {
   get isOnGround() {
     return !this.isOnBuilding;
   }
+
+  get height() {
+    return this.getCharacteristic('height');
+  }
 }

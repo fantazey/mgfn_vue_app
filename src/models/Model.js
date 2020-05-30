@@ -18,6 +18,7 @@ class Model {
   constructor(params) {
     this.id = params.id;
     this.type = params.type;
+    this[`is${this.type}`] = true;
     this.description = params.description;
     /** @type Array<ResourceCharacteristic> */
     this.resourceCharacteristic = params.resourceCharacteristic;

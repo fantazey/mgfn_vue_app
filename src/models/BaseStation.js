@@ -28,7 +28,11 @@ export default class BaseStation extends Model {
    * @return Array<String>
    */
   get cabinet() {
-    return this.getCharacteristic('cabinet')
+    return this.getCharacteristic('cabinetType')
+  }
+
+  isSupportStandard(standard) {
+    return this.cabinet.includes(standard.toUpperCase());
   }
 
 }

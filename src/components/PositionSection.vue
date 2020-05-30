@@ -1,5 +1,5 @@
 <template>
-  <div class="position-section">
+  <div class="section position-section">
     <i :class="iconClass"></i>
     <div class="position-coordinates longitude">{{longitude}}</div>
     <div class="position-coordinates latitude">{{latitude}}</div>
@@ -8,17 +8,27 @@
 
 <script>
   export default {
-    name: "Position",
+    name: "PositionSection",
     props: {
       cover: {
         type: String,
-        default: '',
+        default: 'outdoor',
         validator: function(value) {
           return ['indoor', 'outdoor'].indexOf(value) !== -1;
         }
       },
-      latitude: String,
-      longitude: String
+      latitude: {
+        type: String,
+        default: function() {
+          return '0'
+        }
+      },
+      longitude: {
+        type: String,
+        default: function() {
+          return '0'
+        }
+      }
     },
     computed: {
       iconClass: function() {

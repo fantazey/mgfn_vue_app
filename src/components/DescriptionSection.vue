@@ -1,30 +1,36 @@
 <template>
-  <div class="description-section">
+  <div class="section description-section">
     <span class="title">Площадка {{title}}</span>
-    <description :site-number="number" :address="address" />
+    <description :site-number="siteNumber" :address="address" />
   </div>
 </template>
 
 <script>
-  import Site from "../models/Site";
   import Description from "./Description/Description";
 
   export default {
     name: "DescriptionSection",
     components: { Description },
     props: {
-      site: {
-        type: Site
-      }
-    },
-    data: function() {
-      return {
-        title: this.site.name,
-        number: this.site.number,
-        address: this.site.address
+      title: {
+        type: String,
+        default: function() {
+          return '';
+        }
+      },
+      siteNumber: {
+        type: String,
+        default: function() {
+          return '';
+        }
+      },
+      address: {
+        type: String,
+        default: function() {
+          return '';
+        }
       }
     }
-
   }
 </script>
 

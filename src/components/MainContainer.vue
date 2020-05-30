@@ -1,14 +1,17 @@
 <template>
   <div class="card-container">
     <div class="card-row">
-      <description-section :site="manager.site"/>
-      <position-section :latitude="manager.site.latitude"
-                        :longitude="manager.site.longitude"
-                        :cover="manager.baseStation.cover"/>
+      <description-section
+          :title="getSite().name"
+          :address="getSite().address"
+          :site-number="getSite().number"/>
+      <position-section :latitude="getSite().latitude"
+                        :longitude="getSite().longitude"
+                        :cover="getBaseStation().cover"/>
     </div>
     <div class="card-row">
-      <schema-section :amc="manager.amc" :antennas="manager.antennas"/>
-      <configuration-section/>
+      <schema-section :amc="getAMC()" :antennas="getAntennas()"/>
+      <configuration-section :antennas="getAntennas()" :base-station="getBaseStation()"/>
     </div>
   </div>
 </template>
@@ -31,7 +34,8 @@
         default: function() {
           return []
         }
-      }
+      },
+      showData: Boolean
     },
     created() {
       this.manager = new ModelManager();
@@ -39,6 +43,20 @@
         this.manager.push(this.params[i]);
       }
     },
+    methods: {
+      getSite: function() {
+        return this.showData ? this.manager.site : {};
+      },
+      getBaseStation: function() {
+        return this.showData ? this.manager.baseStation : {};
+      },
+      getAntennas: function() {
+        return this.showData ? this.manager.antennas : []
+      },
+      getAMC: function() {
+        return this.showData ? this.manager.amc : {}
+      }
+    }
   }
 </script>
 
@@ -46,7 +64,8 @@
   .card-container {
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    max-width: 500px;
+    margin: 10px auto;
   }
 
   .card-row {
@@ -54,5 +73,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    margin-top: 20px;
   }
 </style>

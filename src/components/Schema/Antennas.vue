@@ -44,23 +44,14 @@
       buildPathByNumber: function(num) {
         const delta = 26 * num;
         return `M${122 + delta} 17H${116 + delta}C${114 + delta}.895 17 ${114 + delta} 17.8954 ${114 + delta} 19V35C${114+delta} 36.1046 ${114 + delta}.895 37 ${116 + delta} 37H${122 + delta}C${123 + delta}.105 37 ${124+delta} 36.1046 ${124+delta} 35V19C${124+delta} 17.8954 ${123+delta}.105 17 ${122+delta} 17Z`
-      },
-      colorByNum: function(num) {
-        const colors = [
-          '#11DF71',
-          '#FFB932',
-          '#BAB9FF'
-        ];
-        return colors[num];
-      },
+      }
     },
     computed: {
       items: function() {
-        const data = this.antennas.map(( x, i ) => ({
+        return this.antennas.map(( x, i ) => ({
           path: this.buildPathByNumber(i),
-          color: this.colorByNum(i)
+          color: x.color
         }));
-        return data;
       }
     }
   }

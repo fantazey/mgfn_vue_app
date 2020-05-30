@@ -42,7 +42,7 @@ export default [
     "resourceCharacteristic": [
       {
         "name": "coverType",
-        "value": "INDOOR"
+        "value": "OUTDOOR"
       },
       {
         "name": "cabinetType",
