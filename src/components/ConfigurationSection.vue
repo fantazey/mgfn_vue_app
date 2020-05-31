@@ -43,7 +43,7 @@
     },
     computed: {
       selectedAntenna: function() {
-        if (!this.selectedAntennaId) {
+        if (!this.selectedAntennaId || this.antennas.length === 0) {
           return {}
         }
         return this.antennas.find(x => x.id === this.selectedAntennaId);

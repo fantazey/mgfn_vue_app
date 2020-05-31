@@ -5,7 +5,6 @@
             id="0-active"
             v-if="items.sector0.active"
             v-on:click="select(items.sector0.antennaId)"
-            :visibility="items.sector0.activeVisibility"
             :fill="items.sector0.color"
             stroke="#1D1D1D"
       />
@@ -20,7 +19,7 @@
       <path d="M49.8456 23.0195C50.4008 22.9973 50.8288 22.5342 50.7759 21.9866C50.4858 18.7075 49.4948 15.5199 47.8624 12.647C46.2354 9.7824 44.0099 7.29985 41.3434 5.37173C40.892 5.05486 40.2709 5.17855 39.9732 5.64146L28.9448 22.3749C28.4902 23.0567 29.0076 23.9602 29.8267 23.9237L49.8456 23.0195Z"
             id="30-active"
             v-if="items.sector30.active"
-            v-on:click="select"
+            v-on:click="select(items.sector30.antennaId)"
             :fill="items.sector30.color"
             stroke="#1D1D1D"
       />
@@ -35,14 +34,14 @@
       <path d="M39.8661 42.0666C40.1601 42.5382 40.7743 42.6811 41.224 42.3643C43.9304 40.4902 46.2105 38.0522 47.9 35.2124C49.5847 32.3814 50.6415 29.2192 50.9983 25.9481C51.0504 25.399 50.6357 24.9204 50.0861 24.8907L30.088 23.583C29.2706 23.5251 28.7413 24.4217 29.1781 25.1155L39.8661 42.0666Z"
             id="60-active"
             v-if="items.sector60.active"
-            v-on:click="select"
+            v-on:click="select(items.sector60.antennaId)"
             :fill="items.sector60.color"
             stroke="#1D1D1D"
       />
       <path d="M37.144 37.9152C37.431 38.3785 38.0554 38.5235 38.5065 38.204C40.5475 36.7557 42.2642 34.8934 43.548 32.7373C44.8317 30.5812 45.6448 28.1814 45.9474 25.699C46.0112 25.1493 45.5947 24.6742 45.0382 24.6363L30.0321 23.6589C29.2133 23.6037 28.6844 24.4994 29.1222 25.1915L37.144 37.9152Z"
             id="60-inactive"
             v-else
-            v-on:click="select(items.sector30.antennaId)"
+            v-on:click="select(items.sector60.antennaId)"
             :visibility="items.sector60.visibility"
             :fill="items.sector60.color"
             :stroke="items.sector60.color"
@@ -128,6 +127,13 @@
     computed: {
       items: function() {
         const result = {...this.sectors};
+        Object.keys(result).forEach(key => {
+          result[key] = {
+            visibility: 'hidden',
+            active: false,
+            antennaId: null
+          };
+        });
         Array.prototype.forEach.call(this.antennas, (antenna) => {
           const azimuth = +antenna.azimuth;
           const key = 'sector' + azimuth;
@@ -151,28 +157,5 @@
   .sector-group {
     width: 60px;
     position: relative;
-  }
-  .sector-center {
-    position: absolute;
-    left: 20px;
-    top: 25px;
-  }
-  .sector-icon-2 {
-    transform: rotate(-60deg);
-    position: absolute;
-    left: 4px;
-    top: 11px;
-  }
-
-  .sector-icon-0 {
-    position: absolute;
-    left: 15px;
-    top: 5px
-  }
-  .sector-icon-1 {
-    transform: rotate(60deg);
-    position: absolute;
-    left: 25px;
-    top: 12px;
   }
 </style>

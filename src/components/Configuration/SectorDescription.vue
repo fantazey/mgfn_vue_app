@@ -74,6 +74,7 @@
     padding-right: 4px;
     box-sizing: border-box;
     font-size: 0.8em;
+    margin-top: 5px;
   }
   .sector-description-icon {
     background-repeat: no-repeat no-repeat;
