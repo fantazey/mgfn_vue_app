@@ -1,6 +1,8 @@
 <template>
   <div class="sector-description">
-    <span class="sector-description-row sector-name" :title="description">{{description}}</span>
+    <div class="sector-description-row">
+      <span class="sector-name" :title="description">{{description}}</span>
+    </div>
     <div class="sector-description-row">
       <div class="sector-description-icon azimuth-icon"></div>
       <div class="sector-description-value">{{azimuth}}&deg;</div>
